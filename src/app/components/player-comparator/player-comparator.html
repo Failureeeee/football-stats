@@ -1,0 +1,67 @@
+<div class="comparator-container">
+  <h1>Porównywarka Piłkarzy</h1>
+
+  <div class="players-grid">
+    <!-- SEKCJA PIŁKARZA 1 -->
+    <div class="player-column">
+      <h2>Zawodnik 1</h2>
+      <div class="search-box">
+        <input 
+          type="text" 
+          [(ngModel)]="searchQuery1" 
+          placeholder="Wpisz nazwisko (np. Messi)"
+          (keyup.enter)="searchPlayer(1)"
+        />
+        <button (click)="searchPlayer(1)">Szukaj</button>
+      </div>
+
+      <div *ngIf="loading1" class="loading">Ładowanie danych...</div>
+      <div *ngIf="error1" class="error">{{ error1 }}</div>
+
+      <div *ngIf="player1Data" class="player-card">
+        <img [src]="player1Data.player.photo" [alt]="player1Data.player.name" class="player-photo" />
+        <h3>{{ player1Data.player.name }}</h3>
+        <p><strong>Wiek:</strong> {{ player1Data.player.age }}</p>
+        <p><strong>Narodowość:</strong> {{ player1Data.player.nationality }}</p>
+
+        <div *ngIf="player1Data.statistics && player1Data.statistics.length > 0" class="stats">
+          <h4>Statystyki ({{ player1Data.statistics[0].team.name }})</h4>
+          <p><strong>Mecze:</strong> {{ player1Data.statistics[0].games.appearence || 0 }}</p>
+          <p><strong>Gole:</strong> {{ player1Data.statistics[0].goals.total || 0 }}</p>
+          <p><strong>Asysty:</strong> {{ player1Data.statistics[0].goals.assists || 0 }}</p>
+          <p><strong>Ocena:</strong> {{ player1Data.statistics[0].games.rating || 'N/A' }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="player-column">
+      <h2>Zawodnik 2</h2>
+      <div class="search-box">
+        <input 
+          type="text" 
+          [(ngModel)]="searchQuery2" 
+          placeholder="Wpisz nazwisko (np. Ronaldo)"
+          (keyup.enter)="searchPlayer(2)"
+        />
+        <button (click)="searchPlayer(2)">Szukaj</button>
+      </div>
+
+      <div *ngIf="loading2" class="loading">Ładowanie danych...</div>
+      <div *ngIf="error2" class="error">{{ error2 }}</div>
+
+      <div *ngIf="player2Data" class="player-card">
+        <img [src]="player2Data.player.photo" [alt]="player2Data.player.name" class="player-photo" />
+        <h3>{{ player2Data.player.name }}</h3>
+        <p><strong>Wiek:</strong> {{ player2Data.player.age }}</p>
+        <p><strong>Narodowość:</strong> {{ player2Data.player.nationality }}</p>
+
+        <div *ngIf="player2Data.statistics && player2Data.statistics.length > 0" class="stats">
+          <h4>Statystyki ({{ player2Data.statistics[0].team.name }})</h4>
+          <p><strong>Mecze:</strong> {{ player2Data.statistics[0].games.appearence || 0 }}</p>
+          <p><strong>Gole:</strong> {{ player2Data.statistics[0].goals.total || 0 }}</p>
+          <p><strong>Asysty:</strong> {{ player2Data.statistics[0].goals.assists || 0 }}</p>
+          <p><strong>Ocena:</strong> {{ player2Data.statistics[0].games.rating || 'N/A' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
